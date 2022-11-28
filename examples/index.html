@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="https://unpkg.com/jspsych@7.2.3/dist/index.browser.js"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.1"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.1/dist/index.browser.min.js"></script>
+  <script src="../dist/index.browser.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" />
+  <link rel="stylesheet" href="../styles/jspsych-audio-html-button-response.css" />
+</head>
+
+<body></body>
+
+<script>
+  var jsPsych = initJsPsych({
+    on_finish: function () {
+      jsPsych.data.displayData('json');
+    }
+  });
+  
+  let timeline = [
+    {
+      type: jsPsychPreload,
+      audio: ['audio/beep.mp3', 'audio/beep2.mp3']
+    }, 
+    {
+      type: jsPsychHtmlButtonResponse,
+      choices: ['Next'],
+      stimulus: 'Welcome'
+    },
+    {
+      type: jsPsychAudioHtmlButtonResponse,
+      stimulus: 'The stimulus is one long beep and autoplayed. There are two choices.',
+      audio_stimulus: ['audio/longbeep.mp3'],
+      choices: ['click me', 'or me']
+    },
+    {
+      type: jsPsychAudioHtmlButtonResponse,
+      stimulus: 'Four choices testing, without stimulus audio',
+      audio_stimulus: null,
+      choices: ['one beep', 'two beeps,'],
+      audio_choices: [
+        Array(1).fill('audio/beep.mp3'), // 1 beeps
+        Array(2).fill('audio/beep.mp3'), // 2 beeps
+      ],
+      audio_choice_break_duration: 0
+    },
+    {
+      type: jsPsychAudioHtmlButtonResponse,
+      stimulus: 'The stimulus is two beeps, 100ms apart, and is not autoplayed: %play_button%<br>The break duration may be slightly off if tested on a server (i.e. when Web Audio API is available).<br>It could be noticeably off if tested offline.<br>If timing is crucial, the best way is to create custom audio files for all combinations.',
+      audio_stimulus: ['audio/beep.mp3', 'audio/beep.mp3'],
+      choices: ['the play button next to this plays 4 beeps, 100ms apart (default)', 'the button next to this plays 2 beeps, 100 ms apart'],
+      audio_choices: [
+        Array(4).fill('audio/beep.mp3'), // 4 short beeps
+        Array(2).fill('audio/beep.mp3') // 2 beeps
+      ],
+      audio_stimulus_play_button: true,
+      audio_stimulus_autoplay: false
+    },
+    {
+      type: jsPsychAudioHtmlButtonResponse,
+      stimulus: 'The stimulus is three beeps, 50ms apart, and is autoplayed: ',
+      audio_stimulus: ['audio/beep.mp3','audio/beep.mp3','audio/beep.mp3'],
+      choices: ['the play button next to this plays 4 beeps, 0ms apart', 'the button next to this plays 2 beeps, 0 ms apart'],
+      audio_choices: [
+        Array(4).fill('audio/beep.mp3'), // 4 beeps
+        Array(2).fill('audio/beep.mp3') // 2 beeps
+      ],
+      audio_stimulus_break_duration: 50,
+      audio_choice_break_duration: 0,
+      audio_stimulus_play_button: true,
+      audio_stimulus_autoplay: true
+    },
+    {
+      type: jsPsychAudioHtmlButtonResponse,
+      stimulus: 'We will put the play button here: %play_button%. <br>The stimulus is three beeps, and is autoplayed. All beeps are played 0ms apart.<br>Buttons are force-enabled right away.',
+      audio_stimulus: ['audio/beep.mp3','audio/beep.mp3','audio/beep.mp3'],
+      choices: ['the play button next to this plays 4 beeps', 'the button next to this plays 2 beeps'],
+      audio_choices: [
+        Array(4).fill('audio/beep.mp3'), // 4 beeps
+        Array(2).fill('audio/beep.mp3') // 2 beeps
+      ],
+      enable_buttons_after_audio: -1,
+      audio_stimulus_break_duration: 0,
+      audio_choice_break_duration: 0,
+      audio_stimulus_play_button: true,
+      audio_stimulus_autoplay: true
+    },
+    {
+      type: jsPsychAudioHtmlButtonResponse,
+      stimulus: 'This trial will ends after one short and one long beep.',
+      audio_stimulus: ['audio/beep.mp3', 'audio/longbeep.mp3'],
+      choices: null,
+      audioend_ends_trial: true,
+      audio_stimulus_break_duration: 0,
+      audio_choice_break_duration: 0
+    },
+  ];
+
+  //---------Run experiment---------
+  jsPsych.run(timeline);
+
+</script>
+
+</html>
