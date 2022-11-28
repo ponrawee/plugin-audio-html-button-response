@@ -1,5 +1,5 @@
 {
-  "name": "@jspsych-contrib/plugin-audio-sent-button-response",
+  "name": "@jspsych-contrib/plugin-audio-html-button-response",
   "private": "true",
   "version": "0.1.0",
   "description": "",
@@ -25,12 +25,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ponrawee/plugin-audio-html-response.git"
+    "url": "git+https://github.com/ponrawee/plugin-audio-html-button-response.git"
   },
   "author": "Josh de Leeuw",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ponrawee/plugin-audio-html-response/issues"
+    "url": "https://github.com/ponrawee/plugin-audio-html-button-response/issues"
   },
   "peerDependencies": {
     "jspsych": ">=7.0.0"
