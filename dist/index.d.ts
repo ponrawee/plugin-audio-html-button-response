@@ -49,6 +49,10 @@ declare const info: {
             readonly type: ParameterType.HTML_STRING;
             readonly default: "<button class=\"jspsych-btn\">%choice%</button>";
         };
+        readonly play_button_text: {
+            readonly type: ParameterType.HTML_STRING;
+            readonly default: "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-play-fill\" viewBox=\"0 0 16 16\"><path d=\"m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z\"/> </svg>";
+        };
         readonly response_ends_trial: {
             readonly type: ParameterType.BOOL;
             readonly default: true;
@@ -147,6 +151,10 @@ declare class AudioHtmlButtonResponse implements JsPsychPlugin<Info> {
             readonly button_html: {
                 readonly type: ParameterType.HTML_STRING;
                 readonly default: "<button class=\"jspsych-btn\">%choice%</button>";
+            };
+            readonly play_button_text: {
+                readonly type: ParameterType.HTML_STRING;
+                readonly default: "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-play-fill\" viewBox=\"0 0 16 16\"><path d=\"m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z\"/> </svg>";
             };
             readonly response_ends_trial: {
                 readonly type: ParameterType.BOOL;
