@@ -308,14 +308,14 @@ class AudioHtmlButtonResponse {
                 const btn = event.currentTarget;
                 if (btn.disabled !== true) {
                     const btnParent = btn.parentElement;
-                    let choice = btnParent.getAttribute('data-choice');
+                    let choice = parseInt(btnParent.getAttribute('data-choice'), 10);
                     handle_choice(choice);
                     if (trial.response_ends_trial) {
                         // disable all buttons
                         disable_all_buttons();
                         if (trial.correct_choice !== null && trial.feedback_duration !== -1) {
                             btn.classList.add('chosen');
-                            const correctBtn = document.querySelector('#jspsych-audio-html-response-button-wrapper-' + choice + ' button');
+                            const correctBtn = document.querySelector('#jspsych-audio-html-response-button-wrapper-' + trial.correct_choice + ' button');
                             correctBtn.classList.add('correct');
                             if (trial.correct_choice !== choice) {
                                 btn.classList.add('incorrect');

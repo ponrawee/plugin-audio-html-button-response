@@ -8,6 +8,14 @@
   <script src="../dist/index.browser.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/jspsych@7.2.3/css/jspsych.css" />
   <link rel="stylesheet" href="../styles/jspsych-audio-html-button-response.css" />
+  <style>
+    .incorrect, .incorrect:disabled {
+      border: 2px solid red;
+    }
+    .correct, .correct:disabled {
+      border: 2px solid green;
+    }
+  </style>
 </head>
 
 <body></body>
@@ -39,11 +47,30 @@
       type: jsPsychAudioHtmlButtonResponse,
       stimulus: 'Four choices testing, without stimulus audio',
       audio_stimulus: null,
-      choices: ['one beep', 'two beeps,'],
+      choices: ['one beep', 'two beeps', 'three beeps', 'four beeps'],
       audio_choices: [
         Array(1).fill('audio/beep.mp3'), // 1 beeps
         Array(2).fill('audio/beep.mp3'), // 2 beeps
+        Array(3).fill('audio/beep.mp3'), // 3 beeps
+        Array(4).fill('audio/beep.mp3'), // 4 beeps
       ],
+      audio_choice_break_duration: 0
+    },
+    {
+      type: jsPsychAudioHtmlButtonResponse,
+      stimulus: 'This one has no audio associated with it and gives a feedback (with default duration).',
+      audio_stimulus: null,
+      choices: ['I am correct.', 'I am incorrect.'],
+      correct_choice: 0,
+      audio_choice_break_duration: 0
+    },
+    {
+      type: jsPsychAudioHtmlButtonResponse,
+      stimulus: 'This one also gives a feedback (200ms).',
+      audio_stimulus: ['audio/longbeep.mp3'],
+      choices: ['I am correct.', 'I am incorrect.'],
+      correct_choice: 0,
+      feedback_duration: 200,
       audio_choice_break_duration: 0
     },
     {

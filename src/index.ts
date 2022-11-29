@@ -312,7 +312,7 @@ class AudioHtmlButtonResponse implements JsPsychPlugin<Info> {
       const btn = event.currentTarget;
       if (btn.disabled !== true) {
         const btnParent = btn.parentElement;
-        let choice = btnParent.getAttribute('data-choice');
+        let choice = parseInt(btnParent.getAttribute('data-choice'), 10);
 
         handle_choice(choice);
 
@@ -323,7 +323,7 @@ class AudioHtmlButtonResponse implements JsPsychPlugin<Info> {
           if (trial.correct_choice !== null && trial.feedback_duration !== -1) {
             btn.classList.add('chosen')
             const correctBtn = document.querySelector(
-              '#jspsych-audio-html-response-button-wrapper-' + choice + ' button'
+              '#jspsych-audio-html-response-button-wrapper-' + trial.correct_choice + ' button'
             )
             correctBtn.classList.add('correct')
             if (trial.correct_choice !== choice) {
